@@ -4,6 +4,7 @@ import { Job } from "../types/JobTypes";
 interface SavedJobsContextType {
     savedJobs: Job[];
     saveJob: (job: Job) => void;
+    removeJob: (jobId: string) => void;
 }
 
 const SavedJobsContext = createContext<SavedJobsContextType | undefined>(undefined);
@@ -21,8 +22,12 @@ export const SavedJobsProvider: React.FC<SavedJobsProviderProps> = ({ children }
         }
     };
 
+    const removeJob = (jobId: string) => {
+        setSavedJobs(savedJobs.filter(job => job.id !== jobId));
+    };
+
     return (
-        <SavedJobsContext.Provider value={{ savedJobs, saveJob }}>
+        <SavedJobsContext.Provider value={{ savedJobs, saveJob, removeJob }}>
             {children}
         </SavedJobsContext.Provider>
     );
