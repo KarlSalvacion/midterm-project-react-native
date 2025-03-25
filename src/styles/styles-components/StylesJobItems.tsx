@@ -73,6 +73,29 @@ const stylesJobItems = StyleSheet.create({
         marginBottom: 4,
     },
 
+    jobTypeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 12,
+        gap: 5
+    },  
+
+    workModelContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 5
+    },
+
+    icon: {
+        marginRight: 4,
+        color: "rgb(102, 102, 102)",
+        fontSize: 12,
+    },
+
+    darkIcon: {
+        color: "rgb(255, 255, 255)",
+    },
+
     jobInfo: {
         fontSize: 13,
         color: "rgb(102, 102, 102)",

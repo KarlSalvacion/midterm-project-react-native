@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
-import stylesCancelApplication from '../styles-components/StylesCancelApplication';
+import stylesCancelApplication from '../styles/styles-components/StylesCancelApplication';
 
 interface CancelApplicationModalProps {
   visible: boolean;
@@ -24,6 +24,7 @@ const CancelApplicationModal: React.FC<CancelApplicationModalProps> = ({
   jobTitle,
   isDarkMode
 }) => {
+
   return (
     <Modal
       animationType="fade"
@@ -36,7 +37,7 @@ const CancelApplicationModal: React.FC<CancelApplicationModalProps> = ({
         tint={isDarkMode ? "dark" : "light"}
         style={stylesCancelApplication.blurContainer}
       >
-        <Pressable style={stylesCancelApplication.blurContainer} onPress={onClose}>
+        <View style={stylesCancelApplication.blurContainer}>
           <View style={[
             stylesCancelApplication.modalView,
             isDarkMode && stylesCancelApplication.darkModalView
@@ -84,7 +85,7 @@ const CancelApplicationModal: React.FC<CancelApplicationModalProps> = ({
               </Pressable>
             </View>
           </View>
-        </Pressable>
+        </View>
       </BlurView>
     </Modal>
   );

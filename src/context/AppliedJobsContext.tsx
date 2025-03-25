@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Job } from '../types/JobTypes';
-import { ApplyFormValues } from '../components/ApplyModal';
+import { ApplyFormValues } from '../modals/ApplyModal';
 
 interface AppliedJob {
   job: Job;

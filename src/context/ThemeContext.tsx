@@ -15,7 +15,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Load saved theme preference
     loadThemePreference();
   }, []);
 

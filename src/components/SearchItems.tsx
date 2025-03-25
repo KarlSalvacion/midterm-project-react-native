@@ -6,7 +6,7 @@ import {
   Animated
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import stylesSearch from '../styles-components/StyleSearchItems';
+import stylesSearch from '../styles/styles-components/StylesSearchItems';
 
 interface SearchItemsProps {
   isDarkMode: boolean;

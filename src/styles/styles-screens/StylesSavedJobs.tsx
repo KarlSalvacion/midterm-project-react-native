@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: 'rgb(255, 255, 255)',
+    backgroundColor: 'rgb(250, 250, 250)',
   },
 
   darkContainer: {
@@ -14,8 +14,7 @@ export default StyleSheet.create({
   headerContainer: {
     height: 70,
     width: '100%',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    alignItems: 'center',
     padding: 20,
     backgroundColor: 'rgb(20, 71, 142)',
     elevation: 3,
@@ -27,6 +26,9 @@ export default StyleSheet.create({
 
   headerPressable: {
     width: '100%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   
   darkHeaderContainer: {
@@ -41,6 +43,18 @@ export default StyleSheet.create({
   },
 
   darkTitle: {
+    color: 'rgb(255, 255, 255)',
+  },
+
+  savedJobsAmountText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'rgb(255, 255, 255)',
+    marginLeft: 5,
+    textAlign: 'center',
+  },
+
+  darkSavedJobsAmountText: {
     color: 'rgb(255, 255, 255)',
   },
 
@@ -93,9 +107,15 @@ export default StyleSheet.create({
 
   emptyContainer: {
     flex: 1,
+
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     padding: 20,
+  },
+
+  emptyIcon: {
+    marginBottom: 10,
   },
 
   emptyText: {
@@ -105,7 +125,7 @@ export default StyleSheet.create({
   },
 
   darkEmptyText: {
-    color: 'rgb(153, 153, 153)',
+    color: 'rgb(156, 163, 175)',
   },
 
   listContainer: {

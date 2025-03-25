@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, Pressable, Alert } from 'react-native';
+import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { useAppliedJobs } from '../context/AppliedJobsContext';
-import stylesAppliedJobs from '../styles-components/StyleAppliedJobs';
+import stylesAppliedJobs from '../styles/styles-screens/StylesAppliedJobs';
 import { Ionicons } from '@expo/vector-icons';
 import { Job } from '../types/JobTypes';
-import { ApplyFormValues } from '../components/ApplyModal';
-import CancelApplicationModal from '../components/CancelApplicationModal';
+import { ApplyFormValues } from '../modals/ApplyModal';
+import CancelApplicationModal from '../modals/CancelApplicationModal';
+import NotifyCancelModal from '../modals/NotifyCancelModal';
 
 interface AppliedJob {
   job: Job;
@@ -18,6 +19,7 @@ const AppliedJobsScreen: React.FC = () => {
   const { isDarkMode } = useTheme();
   const { appliedJobs, cancelApplication } = useAppliedJobs();
   const [modalVisible, setModalVisible] = useState(false);
+  const [notifyModalVisible, setNotifyModalVisible] = useState(false);
   const [selectedJob, setSelectedJob] = useState<{ id: string; title: string } | null>(null);
 
   const handleCancelApplication = (jobId: string, jobTitle: string) => {
@@ -28,6 +30,8 @@ const AppliedJobsScreen: React.FC = () => {
   const handleConfirmCancel = () => {
     if (selectedJob) {
       cancelApplication(selectedJob.id);
+      setNotifyModalVisible(true);
+      setModalVisible(false);
     }
   };
 
@@ -115,10 +119,10 @@ const AppliedJobsScreen: React.FC = () => {
           Applied Jobs
         </Text>
         <Text style={[
-          stylesAppliedJobs.subtitle,
-          isDarkMode && stylesAppliedJobs.darkSubText
+          stylesAppliedJobs.appliedJobsAmountText,
+          isDarkMode && stylesAppliedJobs.darkAppliedJobsAmountText
         ]}>
-          {appliedJobs.length} {appliedJobs.length === 1 ? 'application' : 'applications'}
+          ({appliedJobs.length})
         </Text>
       </View>
 
@@ -152,6 +156,13 @@ const AppliedJobsScreen: React.FC = () => {
         onConfirm={handleConfirmCancel}
         jobTitle={selectedJob?.title || ''}
         isDarkMode={isDarkMode}
+      />
+
+      <NotifyCancelModal
+        visible={notifyModalVisible}
+        onClose={() => setNotifyModalVisible(false)}
+        isDarkMode={isDarkMode}
+        jobTitle={selectedJob?.title || ''}
       />
     </View>
   );

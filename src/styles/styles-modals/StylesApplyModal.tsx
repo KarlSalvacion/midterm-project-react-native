@@ -18,7 +18,7 @@ const stylesApplyModal = StyleSheet.create({
 
   modalView: {
     width: '100%',
-    height: '90%',
+    height: '85%',
     backgroundColor: 'rgb(255, 255, 255)',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

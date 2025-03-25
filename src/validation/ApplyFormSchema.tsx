@@ -42,7 +42,7 @@ export const ApplyFormSchema = Yup.object().shape({
       .test(
         'no-profanity',
         'Cover letter contains inappropriate words',
-        (value: string) => !/(fuck|shit|bitch)/i.test(value)
+        (value: string) => !/(fuck|shit|bitch|asshole|cunt|dick|nigga|nigger|faggot|fag|dyke|pussy|whore|slut|tanga|bobo|tang ina|tangina|puta|putangina|putang ina|gago|inutil|titi|tite)/i.test(value)
       )
       .test(
         'meaningful-content',

@@ -3,14 +3,19 @@ import { StyleSheet } from 'react-native';
 const stylesAppliedJobs = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(245, 245, 245)',
+    backgroundColor: 'rgb(250, 250, 250)',
   },
   darkContainer: {
     backgroundColor: 'rgb(18, 18, 18)',
   },
   headerContainer: {
+    height: 70,
+    width: '100%',
     padding: 20,
-    backgroundColor: 'rgb(255, 255, 255)',
+    backgroundColor: 'rgb(20, 71, 142)',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     elevation: 2,
@@ -26,18 +31,32 @@ const stylesAppliedJobs = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '600',
-    color: 'rgb(51, 51, 51)',
+    color: 'rgb(255, 255, 255)',
     marginBottom: 4,
   },
   darkTitle: {
     color: 'rgb(255, 255, 255)',
   },
+
+  appliedJobsAmountText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'rgb(255, 255, 255)',
+    marginLeft: 5,
+    textAlign: 'center',
+  },
+
+  darkAppliedJobsAmountText: {
+    color: 'rgb(255, 255, 255)',
+  },
+
   subtitle: {
-    fontSize: 14,
-    color: 'rgb(102, 102, 102)',
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgb(255, 255, 255)',
   },
   darkSubText: {
-    color: 'rgb(170, 170, 170)',
+    color: 'rgb(231, 231, 231)',
   },
   listContainer: {
     padding: 16,
