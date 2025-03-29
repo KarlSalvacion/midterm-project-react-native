@@ -57,6 +57,7 @@ const SearchItems: React.FC<SearchItemsProps> = ({ isDarkMode, onSearch, searchT
           ]}
           placeholder="Search jobs"
           placeholderTextColor={isDarkMode ? "rgb(102, 102, 102)" : "rgb(153, 153, 153)"}
+          keyboardAppearance={isDarkMode ? "dark" : "light"}
           value={searchText}
           onChangeText={handleSearch}
           returnKeyType="search"

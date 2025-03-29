@@ -28,12 +28,12 @@ const stylesSearch = StyleSheet.create({
   },
 
   searchBarFocused: {
-    borderColor: " rgb(235, 184, 113)",
+    borderColor: " rgb(165, 199, 255)",
     borderWidth: 2,
   },
 
   darkSearchBarFocused: {
-    borderColor: "rgb(255, 255, 255)",
+    borderColor: "rgb(168, 168, 168)",
   },
 
   iconsContainer: {

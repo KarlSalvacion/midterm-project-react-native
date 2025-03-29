@@ -5,7 +5,7 @@ const stylesConfirmApplyModal = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(28, 30, 33, 0.75)'
+        backgroundColor: 'rgba(5, 7, 10, 0.5)'
       },
       
       blurContainer: {
@@ -32,7 +32,7 @@ const stylesConfirmApplyModal = StyleSheet.create({
       },
       
       darkConfirmModalView: {
-        backgroundColor: '#2C2C2C'
+        backgroundColor: 'rgb(30, 30, 30)'
       },
       
       confirmTitle: {

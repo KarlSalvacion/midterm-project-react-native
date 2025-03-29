@@ -79,7 +79,7 @@ const stylesHome = StyleSheet.create({
     },
 
     darkThemeToggleButton: {
-        backgroundColor: 'rgb(255, 215, 0)',
+        backgroundColor: 'rgb(250, 205, 80)',
     },
 
     
@@ -226,7 +226,7 @@ const stylesHome = StyleSheet.create({
     },
 
     darkEmptyContainer: {
-        backgroundColor: 'rgb(26, 26, 26)',
+        backgroundColor: 'rgb(18, 18, 18)',
     },
 
     emptyText: {
@@ -237,16 +237,16 @@ const stylesHome = StyleSheet.create({
 
     emptyIcon: {
         fontSize: 100,
-        marginBottom: 10,
+        marginBottom: 30,
         color: 'rgb(116, 116, 116)',
     },
 
     darkEmptyIcon: {
-        color: 'rgb(255, 255, 255)',
+        color: 'rgb(156, 163, 175)',
     },
         
     darkEmptyText: {
-        color: 'rgb(255, 255, 255)',
+        color: 'rgb(156, 163, 175)',
     },
 });
 

@@ -76,8 +76,8 @@ const SavedJobsScreen: React.FC = () => {
           <RefreshControl 
             refreshing={refreshing} 
             onRefresh={onRefresh}
-            colors={[isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"]}
-            tintColor={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"}
+            colors={[isDarkMode ? "rgb(0, 123, 255)" : "rgb(0, 123, 255)"]}
+            tintColor={isDarkMode ? "rgb(0, 123, 255)" : "rgb(0, 123, 255)"}
           />
         }
         renderItem={({ item }) => (

@@ -33,12 +33,16 @@ const stylesNavBar = StyleSheet.create({
     color: 'rgb(102, 105, 109)',
   },
 
+  darkIcon:{
+    color: 'rgb(136, 136, 136)',
+  },
+
   activeIcon: {
     color: 'rgb(20, 71, 142)',
   },
 
   darkActiveIcon: {
-    color: 'rgb(82, 130, 255)',
+    color: 'rgb(64, 106, 212)',
   },
 
   iconContainer: {
@@ -61,7 +65,7 @@ const stylesNavBar = StyleSheet.create({
   },
 
   darkLabel: {
-    color: 'rgb(153, 153, 153)',
+    color: 'rgb(136, 136, 136)',
   },
 
   darkActiveLabel: {
@@ -69,10 +73,14 @@ const stylesNavBar = StyleSheet.create({
   },
 
   pressable: {
-    backgroundColor: 'rgba(30, 27, 27, 0.35)',
+    backgroundColor: 'rgba(252, 252, 252, 0.35)',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  darkPressable: {
+    backgroundColor: 'rgba(30, 27, 27, 0.35)',
   },
 });
 

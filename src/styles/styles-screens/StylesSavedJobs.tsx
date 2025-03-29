@@ -17,6 +17,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: 'rgb(20, 71, 142)',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgb(221, 221, 221)',
     elevation: 3,
     shadowColor: 'rgb(0, 0, 0)',
     shadowOffset: { width: 0, height: 1 },
@@ -33,7 +35,7 @@ export default StyleSheet.create({
   
   darkHeaderContainer: {
     backgroundColor: 'rgb(26, 26, 26)',
-    borderBottomColor: 'rgb(40, 40, 40)',
+    borderBottomColor: 'rgb(41, 41, 41)',
   },
 
   title: {

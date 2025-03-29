@@ -98,7 +98,7 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
   };
 
   const scrollToInput = (inputName: string) => {
-    // Fixed positions for each input field
+
     const positions = {
       fullName: 0,
       email: 60,
@@ -114,7 +114,6 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
     }, Platform.OS === 'ios' ? 50 : 150);
   };
 
-  // Add keyboard listeners
   useEffect(() => {
     const keyboardWillShow = (e: KeyboardEvent) => {
       setKeyboardHeight(e.endCoordinates.height);
@@ -144,17 +143,15 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
     };
   }, []);
 
-  // Add animation values
   const pan = useRef(new Animated.ValueXY()).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const slideAnim = useRef(new Animated.Value(1000)).current; // Start from below screen
+  const slideAnim = useRef(new Animated.Value(1000)).current; 
 
-  // Reset position and animate when modal opens
   useEffect(() => {
     if (visible) {
       pan.setValue({ x: 0, y: 0 });
       fadeAnim.setValue(0);
-      slideAnim.setValue(1000); // Reset to starting position
+      slideAnim.setValue(1000); 
       
       Animated.parallel([
         Animated.timing(fadeAnim, {
@@ -234,7 +231,7 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
                     isDarkMode && stylesApplyModal.darkModalView,
                     { 
                       transform: [
-                        { translateY: Animated.add(slideAnim, pan.y) } // Combine slide animation with pan gesture
+                        { translateY: Animated.add(slideAnim, pan.y) } 
                       ] 
                     }
                   ]}
@@ -373,18 +370,16 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
                                 touched.phoneNumber && errors.phoneNumber && stylesApplyModal.inputError
                               ]}
                               onChangeText={(text) => {
-                                // Remove any non-digit characters except '+'
                                 const cleaned = text.replace(/[^\d+]/g, '');
                                 
-                                // Format the number with sections
                                 let formatted = '';
                                 if (cleaned.startsWith('+639')) {
-                                  // International format: +639 XX XXX XXXX
-                                  const base = cleaned.slice(0, 4); // +639
+                                  
+                                  const base = cleaned.slice(0, 4); 
                                   const firstSection = cleaned.slice(4, 6);
                                   const secondSection = cleaned.slice(6, 9);
                                   const thirdSection = cleaned.slice(9, 13);
-                                  
+
                                   formatted = [
                                     base,
                                     firstSection,
@@ -392,7 +387,7 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
                                     thirdSection
                                   ].filter(Boolean).join(' ');
                                 } else {
-                                  // Local format: 09XX XXX XXXX
+
                                   const base = cleaned.slice(0, 4);
                                   const secondSection = cleaned.slice(4, 7);
                                   const thirdSection = cleaned.slice(7, 11);
