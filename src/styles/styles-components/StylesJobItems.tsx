@@ -162,7 +162,7 @@ const stylesJobItems = StyleSheet.create({
     },
 
     applyButtonText: {
-        color: 'white',
+        color: 'rgb(255, 255, 255)',
         fontSize: 14,
         fontWeight: '600',
     },
@@ -196,18 +196,28 @@ const stylesJobItems = StyleSheet.create({
 
     checkIcon: {
         marginRight: 4,
+        color: "rgb(20, 71, 142)",
+        fontSize: 16,
+    },
+
+    darkCheckIcon: {
+        color: "rgb(255, 255, 255)",
     },
 
     appliedButton: {
-        backgroundColor: 'rgb(20, 71, 142)',
-        opacity: 0.5,
+        backgroundColor: 'rgb(255, 255, 255)',
     },
     
     darkAppliedButton: {
-        backgroundColor: "rgba(58, 121, 214, 0.66)",
+        backgroundColor: "rgb(30, 29, 29)",
     },
 
     appliedButtonText: {
+        fontSize: 16,
+        color: 'rgb(20, 71, 142)',
+    },
+
+    darkAppliedButtonText: {
         color: 'rgb(255, 255, 255)',
     },
 

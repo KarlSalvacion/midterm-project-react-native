@@ -66,7 +66,7 @@ const stylesConfirmApplyModal = StyleSheet.create({
       },
 
       darkConfirmButton: {
-        backgroundColor: 'rgb(255, 102, 0)'
+        backgroundColor: 'rgb(20, 71, 142)'
       },
 
       buttonPressed: {

@@ -4,7 +4,7 @@ import {
   Text, 
   FlatList, 
   ActivityIndicator, 
-  RefreshControl, 
+  // RefreshControl, 
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -17,6 +17,7 @@ import stylesHome from "../styles/styles-screens/StylesHome";
 import JobItem from "../components/JobItems";
 import { useTheme } from "../context/ThemeContext";
 import { useSavedJobs } from "../context/SavedJobsContext";
+import { useAppliedJobs } from "../context/AppliedJobsContext";
 import SearchItems from '../components/SearchItems';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/navigationTypes';
@@ -26,7 +27,8 @@ const ITEMS_PER_PAGE = 10;
 
 const HomeScreen: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme();
-  const { savedJobs } = useSavedJobs(); // Access saved jobs from context
+  const { savedJobs } = useSavedJobs();
+  const { appliedJobs, hasApplied } = useAppliedJobs();
   const flatListRef = useRef<FlatList>(null);
   const slideAnim = useRef(new Animated.Value(0)).current;
   const [isPressed, setIsPressed] = useState(false);
@@ -34,7 +36,7 @@ const HomeScreen: React.FC = () => {
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [displayedJobs, setDisplayedJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [refreshing, setRefreshing] = useState<boolean>(false);
+  // const [refreshing, setRefreshing] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
@@ -67,22 +69,27 @@ const HomeScreen: React.FC = () => {
     try {
       setLoading(true);
       const jobData = await fetchJobs();
+      
       const jobMap = new Map<string, Job>();
-
       jobData.forEach((job) => {
         jobMap.set(job.id, job);
       });
 
       savedJobs.forEach((savedJob) => {
-        
-        if (!jobMap.has(savedJob.id)) {
-          const existingJob = jobMap.get(savedJob.id);
-          jobMap.set(savedJob.id, savedJob), {
+        if (jobMap.has(savedJob.id)) {
+          const existingJob = jobMap.get(savedJob.id)!;
+          jobMap.set(savedJob.id, {
             ...existingJob,
-            saved: true,
-          }
+            saved: true
+          });
         } else {
           jobMap.set(savedJob.id, savedJob);
+        }
+      });
+
+      appliedJobs.forEach((appliedJob) => {
+        if (!jobMap.has(appliedJob.job.id)) {
+          jobMap.set(appliedJob.job.id, appliedJob.job);
         }
       });
 
@@ -103,14 +110,9 @@ const HomeScreen: React.FC = () => {
       console.error('Error loading jobs:', error);
     } finally {
       setLoading(false);
-      setRefreshing(false);
+      // setRefreshing(false);
     }
-  }, [searchText, savedJobs]);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    loadJobs();
-  }, [searchText, savedJobs]); // Add savedJobs and appliedJobs as dependencies
+  }, [searchText, savedJobs, appliedJobs]);
 
   const handleSearch = (text: string) => {
     const query = text.trim().toLowerCase();
@@ -213,21 +215,21 @@ const HomeScreen: React.FC = () => {
           />
         </View>
         
-        {loading && !refreshing ? (
+        {loading ? (
           <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />
         ) : (
           <FlatList 
             ref={flatListRef}
             data={displayedJobs}
             keyExtractor={(item) => item.id} 
-            refreshControl={
-              <RefreshControl 
-                refreshing={refreshing} 
-                onRefresh={onRefresh}
-                colors={[isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"]}
-                tintColor={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"}
-              />
-            } 
+            // refreshControl={
+            //   <RefreshControl 
+            //     refreshing={refreshing} 
+            //     onRefresh={onRefresh}
+            //     colors={[isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"]}
+            //     tintColor={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"}
+            //   />
+            // } 
             renderItem={({ item }) => (
               <JobItem 
                 job={item} 

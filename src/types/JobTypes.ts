@@ -19,5 +19,6 @@ export interface Job {
     };
     locations: string[];
     tags: string[];
-  }
+    saved?: boolean;
+}
   

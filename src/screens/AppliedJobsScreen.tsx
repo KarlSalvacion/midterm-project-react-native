@@ -143,7 +143,7 @@ const AppliedJobsScreen: React.FC = () => {
             <Ionicons 
               name="document-text-outline" 
               size={48} 
-              color={isDarkMode ? "rgb(75, 85, 99)" : "rgb(156, 163, 175)"}
+              color={isDarkMode ? "rgb(156, 163, 175)" : "rgb(75, 85, 99)"}
               style={stylesAppliedJobs.emptyIcon}
             />
             <Text style={[

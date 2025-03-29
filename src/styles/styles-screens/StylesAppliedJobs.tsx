@@ -171,10 +171,11 @@ const stylesAppliedJobs = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 60,
+    alignSelf: 'center',
+    padding: 24,
   },
   emptyIcon: {
-    marginBottom: 16,
+    marginBottom: 10,
   },
   emptyText: {
     fontSize: 16,

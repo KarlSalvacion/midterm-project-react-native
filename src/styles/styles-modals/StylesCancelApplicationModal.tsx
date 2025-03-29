@@ -97,7 +97,7 @@ const stylesCancelApplicationModal = StyleSheet.create({
     noButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: 'rgb(255, 255, 255)',
+        color: 'rgb(42, 42, 42)',
     },
 
     darkNoButtonText: {

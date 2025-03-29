@@ -176,15 +176,15 @@ const JobItem: React.FC<JobItemProps> = ({ job, isDarkMode, onUnsave, navigation
                 {isApplied && (
                   <Ionicons 
                     name="checkmark-circle" 
-                    size={16} 
-                    color="rgb(255, 255, 255)" 
-                    style={stylesJobItems.checkIcon}
+                    style={[stylesJobItems.checkIcon, 
+                      isDarkMode && stylesJobItems.darkCheckIcon]}
                   />
                 )}
                 <Text style={[
                   stylesJobItems.applyButtonText,
                   isDarkMode && stylesJobItems.darkButtonText,
-                  isApplied && stylesJobItems.appliedButtonText
+                  isApplied && stylesJobItems.appliedButtonText, 
+                  isApplied && isDarkMode && stylesJobItems.darkAppliedButtonText
                 ]}>{isApplied ? 'Applied' : 'Apply'}</Text>
               </View>
             </Pressable>

@@ -107,7 +107,6 @@ export default StyleSheet.create({
 
   emptyContainer: {
     flex: 1,
-
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
