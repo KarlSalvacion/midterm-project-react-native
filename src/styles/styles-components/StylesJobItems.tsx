@@ -157,6 +157,10 @@ const stylesJobItems = StyleSheet.create({
         opacity: 0.7,
     },
 
+    buttonPressedBookmark: {
+        opacity: 0.5,
+    },
+
     applyButtonText: {
         color: 'white',
         fontSize: 14,
@@ -182,6 +186,7 @@ const stylesJobItems = StyleSheet.create({
     bookmarkButton: {
         padding: 4,
     },
+
 
     applyButtonContent: {
         flexDirection: 'row',

@@ -30,12 +30,12 @@ const UnsaveModal: React.FC<UnsaveModalProps> = ({
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (_, gestureState) => {
-        if (gestureState.dy > 0) { // Only allow downward swipe
+        if (gestureState.dy > 0) { 
           translateY.setValue(gestureState.dy);
         }
       },
       onPanResponderRelease: (_, gestureState) => {
-        if (gestureState.dy > 50) { // Threshold to trigger close
+        if (gestureState.dy > 50) { 
           Animated.timing(translateY, {
             toValue: 400,
             duration: 200,

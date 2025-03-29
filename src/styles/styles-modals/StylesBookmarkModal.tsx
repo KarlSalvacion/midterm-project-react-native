@@ -34,7 +34,10 @@ export default StyleSheet.create({
     elevation: 5,
   },
   darkModalContent: {
-    backgroundColor: 'rgb(18, 18, 18)',
+    backgroundColor: 'rgb(45, 45, 45)',
+    borderTopColor: 'rgb(64, 64, 64)',
+    borderRightColor: 'rgb(64, 64, 64)',
+    borderBottomColor: 'rgb(64, 64, 64)',
   },
   messageContainer: {
     flexDirection: 'row',

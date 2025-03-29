@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import { Job } from "../types/JobTypes";
 import stylesJobItems from "../styles/styles-components/StylesJobItems";
@@ -22,11 +22,15 @@ const JobItem: React.FC<JobItemProps> = ({ job, isDarkMode, onUnsave, navigation
   const { savedJobs, saveJob, removeJob } = useSavedJobs();
   const { hasApplied, applyToJob } = useAppliedJobs();
   const [isPressed, setIsPressed] = useState(false);
-  const isSalaryAvailable = job.salary.min > 0 && job.salary.max > 0;
-  const isBookmarked = savedJobs.some(savedJob => savedJob.id === job.id);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isApplied, setIsApplied] = useState(false);
   const [isApplyModalVisible, setIsApplyModalVisible] = useState(false);
-  const isApplied = hasApplied(job.id);
   const [showBookmarkModal, setShowBookmarkModal] = useState(false);
+
+  useEffect(() => {
+    setIsBookmarked(savedJobs.some(savedJob => savedJob.id === job.id));
+    setIsApplied(hasApplied(job.id));
+  }, [savedJobs, hasApplied, job.id]);
 
   const handleBookmark = () => {
     if (isBookmarked) {
@@ -132,17 +136,16 @@ const JobItem: React.FC<JobItemProps> = ({ job, isDarkMode, onUnsave, navigation
                   stylesJobItems.salary,
                   isDarkMode && stylesJobItems.darkSalary
                 ]}>
-                  {isSalaryAvailable 
+                  {job.salary.min > 0 && job.salary.max > 0 
                     ? `₱${job.salary.min.toLocaleString()} - ₱${job.salary.max.toLocaleString()}`
                     : "Salary: TBD"}
             </Text>
-
-            
         </View>
         <View style={stylesJobItems.buttonContainer}>
           <Pressable 
-              style={[
+              style={({ pressed }) => [
                 stylesJobItems.bookmarkButton,
+                pressed && stylesJobItems.buttonPressedBookmark,
               ]}
               onPress={handleBookmark}
             >

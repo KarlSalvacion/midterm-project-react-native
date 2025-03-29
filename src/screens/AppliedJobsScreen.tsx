@@ -86,12 +86,18 @@ const AppliedJobsScreen: React.FC = () => {
       </View>
 
       <View style={stylesAppliedJobs.applicationStatus}>
-        <View style={stylesAppliedJobs.statusContainer}>
-          <Text style={stylesAppliedJobs.statusText}>Under Review</Text>
+        <View style={[stylesAppliedJobs.statusContainer, 
+          isDarkMode && stylesAppliedJobs.darkStatusContainer]}
+        >
+          <Text style={[stylesAppliedJobs.statusText, 
+            isDarkMode && stylesAppliedJobs.darkStatusText]}
+          >
+            Under Review
+          </Text>
         </View>
         <Pressable
           style={({ pressed }) => [
-            stylesAppliedJobs.cancelButton,
+            stylesAppliedJobs.cancelButton, isDarkMode && stylesAppliedJobs.darkCancelButton,
             pressed && stylesAppliedJobs.buttonPressed
           ]}
           onPress={() => handleCancelApplication(item.job.id, item.job.title)}

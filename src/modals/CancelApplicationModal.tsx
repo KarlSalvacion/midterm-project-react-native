@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
-import stylesCancelApplication from '../styles/styles-components/StylesCancelApplication';
+import stylesCancelApplicationModal from '../styles/styles-modals/StylesCancelApplicationModal';
 
 interface CancelApplicationModalProps {
   visible: boolean;
@@ -35,14 +35,14 @@ const CancelApplicationModal: React.FC<CancelApplicationModalProps> = ({
       <BlurView
         intensity={20}
         tint={isDarkMode ? "dark" : "light"}
-        style={stylesCancelApplication.blurContainer}
+        style={stylesCancelApplicationModal.blurContainer}
       >
-        <View style={stylesCancelApplication.blurContainer}>
+        <View style={stylesCancelApplicationModal.blurContainer}>
           <View style={[
-            stylesCancelApplication.modalView,
-            isDarkMode && stylesCancelApplication.darkModalView
+            stylesCancelApplicationModal.modalView,
+            isDarkMode && stylesCancelApplicationModal.darkModalView
           ]}>
-            <View style={stylesCancelApplication.iconContainer}>
+            <View style={stylesCancelApplicationModal.iconContainer}>
               <Ionicons 
                 name="alert-circle" 
                 size={48} 
@@ -51,35 +51,50 @@ const CancelApplicationModal: React.FC<CancelApplicationModalProps> = ({
             </View>
             
             <Text style={[
-              stylesCancelApplication.title,
-              isDarkMode && stylesCancelApplication.darkTitle
+              stylesCancelApplicationModal.title,
+              isDarkMode && stylesCancelApplicationModal.darkTitle 
             ]}>
               Cancel Application
             </Text>
             
             <Text style={[
-              stylesCancelApplication.message,
-              isDarkMode && stylesCancelApplication.darkMessage
+              stylesCancelApplicationModal.message,
+              isDarkMode && stylesCancelApplicationModal.darkMessage
             ]}>
-              Are you sure you want to cancel your application for {jobTitle}?
+              Are you sure you want to cancel your application for <Text style={stylesCancelApplicationModal.jobTitleText}>{jobTitle}?</Text>  
+              
             </Text>
 
-            <View style={stylesCancelApplication.buttonContainer}>
+            <View style={stylesCancelApplicationModal.buttonContainer}>
               <Pressable
-                style={[stylesCancelApplication.button, stylesCancelApplication.cancelButton]}
+                style={({ pressed }) => [
+                  stylesCancelApplicationModal.button, 
+                  stylesCancelApplicationModal.noButton,
+                  isDarkMode && stylesCancelApplicationModal.darkNoButton,
+                  pressed && stylesCancelApplicationModal.pressedButton]}
                 onPress={onClose}
               >
-                <Text style={stylesCancelApplication.buttonText}>No, Keep It</Text>
+                <Text style={
+                  [stylesCancelApplicationModal.noButtonText,
+                  isDarkMode && stylesCancelApplicationModal.darkNoButtonText,]
+                }>
+                  No, Keep It
+                </Text>
               </Pressable>
               
               <Pressable
-                style={[stylesCancelApplication.button, stylesCancelApplication.confirmButton]}
+                style={({ pressed }) => [stylesCancelApplicationModal.button,
+                  stylesCancelApplicationModal.confirmButton,
+                  isDarkMode && stylesCancelApplicationModal.darkConfirmButton,
+                  pressed && stylesCancelApplicationModal.pressedButton
+                  ]}
                 onPress={() => {
                   onConfirm();
                   onClose();
                 }}
               >
-                <Text style={[stylesCancelApplication.buttonText, stylesCancelApplication.confirmButtonText]}>
+                <Text style={[stylesCancelApplicationModal.buttonText, 
+                  stylesCancelApplicationModal.confirmButtonText]}>
                   Yes, Cancel
                 </Text>
               </Pressable>

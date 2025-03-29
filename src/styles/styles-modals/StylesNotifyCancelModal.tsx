@@ -36,7 +36,10 @@ const stylesNotifyCancelModal = StyleSheet.create({
     },
 
     darkModalContent: {
-        backgroundColor: 'rgb(30, 30, 30)',
+        backgroundColor: 'rgb(45, 45, 45)',
+        borderTopColor: 'rgb(64, 64, 64)',
+        borderRightColor: 'rgb(64, 64, 64)',
+        borderBottomColor: 'rgb(64, 64, 64)',
     },
     
     messageContainer: {

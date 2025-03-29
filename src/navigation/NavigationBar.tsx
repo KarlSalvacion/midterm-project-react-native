@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import stylesNavBar from '../styles/styles-navigation/StylesTabNavigation';
 import { useTheme } from '../context/ThemeContext';
@@ -20,32 +20,61 @@ const NavigationBar: React.FC = () => {
           stylesNavBar.mainContainer,
           isDarkMode && stylesNavBar.darkMainContainer
         ],
-        tabBarIcon: ({ focused }) => (
-          <View style={[
-            stylesNavBar.iconContainer,
-            
-          ]}>
-            {route.name === "Home" ? (
-              <Ionicons name={focused ? "home" : "home-outline"} style={[stylesNavBar.icon, focused && stylesNavBar.activeIcon, isDarkMode && stylesNavBar.darkActiveIcon]} />
-            ) : route.name === "Saved" ? (
-              <Ionicons name={focused ? "bookmark" : "bookmark-outline"} style={[stylesNavBar.icon, focused && stylesNavBar.activeIcon, isDarkMode && stylesNavBar.darkActiveIcon]} />
-            ) : (
-              <Ionicons name={focused ? "briefcase" : "briefcase-outline"} style={[stylesNavBar.icon, focused && stylesNavBar.activeIcon, isDarkMode && stylesNavBar.darkActiveIcon]} />
-            )}
-          </View>
-        ),
-        tabBarLabel: ({ focused, color }) => (
-          <Text style={[
-            stylesNavBar.label,
-            focused && stylesNavBar.activeLabel,
-            isDarkMode && stylesNavBar.darkLabel,
-            focused && isDarkMode && stylesNavBar.darkActiveLabel
-          ]}>
-            {route.name}
-          </Text>
-        ),
-        
-        tabBarLabelInactiveTintColor: isDarkMode ? "rgb(153, 153, 153)" : "rgb(102, 102, 102)",
+        tabBarButton: ({ accessibilityState, onPress }) => {
+          const focused = accessibilityState?.selected;
+
+          return (
+            <Pressable
+              onPress={onPress}
+              style={({ pressed }) => [
+                stylesNavBar.buttonContainer,
+                pressed && stylesNavBar.pressable,
+              ]}
+            >
+              <View style={stylesNavBar.iconContainer}>
+                {route.name === "Home" ? (
+                  <Ionicons
+                    name={focused ? "home" : "home-outline"}
+                    style={[
+                      stylesNavBar.icon,
+                      focused && stylesNavBar.activeIcon,
+                      isDarkMode && stylesNavBar.darkActiveIcon,
+                    ]}
+                  />
+                ) : route.name === "Saved" ? (
+                  <Ionicons
+                    name={focused ? "bookmark" : "bookmark-outline"}
+                    style={[
+                      stylesNavBar.icon,
+                      focused && stylesNavBar.activeIcon,
+                      isDarkMode && stylesNavBar.darkActiveIcon,
+                    ]}
+                  />
+                ) : (
+                  <Ionicons
+                    name={focused ? "briefcase" : "briefcase-outline"}
+                    style={[
+                      stylesNavBar.icon,
+                      focused && stylesNavBar.activeIcon,
+                      isDarkMode && stylesNavBar.darkActiveIcon,
+                    ]}
+                  />
+                )}
+              </View>
+              <Text
+                style={[
+                  stylesNavBar.label,
+                  focused && stylesNavBar.activeLabel,
+                  isDarkMode && stylesNavBar.darkLabel,
+                  focused && isDarkMode && stylesNavBar.darkActiveLabel,
+                ]}
+              >
+                {route.name}
+              </Text>
+            </Pressable>
+          );
+        },
+        tabBarLabel: () => null, // Remove default label since we're handling it inside Pressable
         headerShown: false,
       })}
     >
@@ -57,4 +86,3 @@ const NavigationBar: React.FC = () => {
 };
 
 export default NavigationBar;
-

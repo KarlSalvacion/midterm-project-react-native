@@ -40,6 +40,9 @@ const stylesUnsaveModal = StyleSheet.create({
   },
   darkModalView: {
     backgroundColor: 'rgb(45, 45, 45)',
+    borderTopColor: 'rgb(64, 64, 64)',
+    borderRightColor: 'rgb(64, 64, 64)',  
+    borderBottomColor: 'rgb(64, 64, 64)',
   },
   messageContent: {
     flex: 1,

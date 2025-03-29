@@ -129,20 +129,38 @@ const stylesAppliedJobs = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 16,
   },
+
+  darkStatusContainer: {
+    backgroundColor: 'rgb(224, 209, 196)',
+  },
+  
   statusText: {
     color: 'rgb(234, 88, 12)',
     fontSize: 12,
     fontWeight: '600',
   },
+
+  darkStatusText: {
+    color: 'rgb(220, 18, 0)',
+  },
+  
   cancelButton: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgb(237, 52, 52)',
   },
+  darkCancelButton: {
+    borderColor: 'rgb(220, 18, 0)',
+  },
+
   buttonPressed: {
     opacity: 0.7,
+    backgroundColor: 'rgba(255, 12, 28, 0.08)',
   },
+
   cancelButtonText: {
     color: 'rgb(220, 38, 38)',
     marginLeft: 4,

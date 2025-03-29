@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const stylesNavBar = StyleSheet.create({
   mainContainer: {
     borderTopWidth: 1,
     borderTopColor: 'rgb(255, 252, 252)',
@@ -16,9 +16,16 @@ export default StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 3,
   },
+
   darkMainContainer: {
     backgroundColor: 'rgb(26, 26, 26)',
     borderTopColor: 'rgb(40, 40, 40)',
+  },
+
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   
   icon: {
@@ -59,5 +66,14 @@ export default StyleSheet.create({
 
   darkActiveLabel: {
     color: 'rgb(82, 130, 255)',
-  }
+  },
+
+  pressable: {
+    backgroundColor: 'rgba(30, 27, 27, 0.35)',
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
+
+export default stylesNavBar;
