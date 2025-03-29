@@ -153,7 +153,9 @@ const JobItem: React.FC<JobItemProps> = ({ job, isDarkMode, onUnsave, navigation
                 name={isBookmarked ? "bookmark" : "bookmark-outline"} 
                 size={30} 
                 color={isBookmarked 
-                  ? "rgb(226, 187, 31)" 
+                  ? isDarkMode
+                    ? "rgb(255, 202, 57)"
+                    : "rgb(238, 199, 42)"
                   : isDarkMode 
                     ? "rgb(203, 203, 203)" 
                     : "rgb(102, 102, 102)"} 

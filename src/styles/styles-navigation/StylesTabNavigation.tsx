@@ -73,10 +73,14 @@ const stylesNavBar = StyleSheet.create({
   },
 
   pressable: {
-    backgroundColor: 'rgba(30, 27, 27, 0.35)',
+    backgroundColor: 'rgba(252, 252, 252, 0.35)',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  darkPressable: {
+    backgroundColor: 'rgba(30, 27, 27, 0.35)',
   },
 });
 

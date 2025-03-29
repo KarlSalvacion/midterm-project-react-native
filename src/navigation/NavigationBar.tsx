@@ -29,6 +29,7 @@ const NavigationBar: React.FC = () => {
               style={({ pressed }) => [
                 stylesNavBar.buttonContainer,
                 pressed && stylesNavBar.pressable,
+                isDarkMode && stylesNavBar.darkPressable,
               ]}
             >
               <View style={stylesNavBar.iconContainer}>

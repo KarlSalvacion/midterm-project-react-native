@@ -85,7 +85,10 @@ const AppliedJobsScreen: React.FC = () => {
         </View>
       </View>
 
-      <View style={stylesAppliedJobs.applicationStatus}>
+      <View style={[
+        stylesAppliedJobs.applicationStatus, 
+        isDarkMode && stylesAppliedJobs.darkApplicationStatus
+      ]}>
         <View style={[stylesAppliedJobs.statusContainer, 
           isDarkMode && stylesAppliedJobs.darkStatusContainer]}
         >
