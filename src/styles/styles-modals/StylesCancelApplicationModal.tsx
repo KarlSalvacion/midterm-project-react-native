@@ -59,6 +59,10 @@ const stylesCancelApplicationModal = StyleSheet.create({
         color: 'rgb(28, 28, 28)',
     },
 
+    darkJobTitleText: {
+        color: 'rgb(229, 229, 229)',
+    },
+
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',

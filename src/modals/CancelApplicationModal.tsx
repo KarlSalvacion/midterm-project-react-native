@@ -61,7 +61,7 @@ const CancelApplicationModal: React.FC<CancelApplicationModalProps> = ({
               stylesCancelApplicationModal.message,
               isDarkMode && stylesCancelApplicationModal.darkMessage
             ]}>
-              Are you sure you want to cancel your application for <Text style={stylesCancelApplicationModal.jobTitleText}>{jobTitle}?</Text>  
+              Are you sure you want to cancel your application for <Text style={[stylesCancelApplicationModal.jobTitleText, isDarkMode && stylesCancelApplicationModal.darkJobTitleText]}>{jobTitle}?</Text>  
               
             </Text>
 
