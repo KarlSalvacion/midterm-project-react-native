@@ -17,7 +17,7 @@ const stylesAppliedJobs = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    borderBottomColor: 'rgb(221, 221, 221)',
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -25,8 +25,8 @@ const stylesAppliedJobs = StyleSheet.create({
     shadowRadius: 2,
   },
   darkHeaderContainer: {
-    backgroundColor: 'rgb(30, 30, 30)',
-    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgb(26, 26, 26)',
+    borderBottomColor: 'rgb(41, 41, 41)',
   },
   title: {
     fontSize: 24,
@@ -121,7 +121,7 @@ const stylesAppliedJobs = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 16,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(0, 0, 0, 0.1)',
+    borderTopColor: 'rgb(40, 40, 40)',
   },
   statusContainer: {
     backgroundColor: 'rgb(255, 247, 237)',
@@ -183,7 +183,7 @@ const stylesAppliedJobs = StyleSheet.create({
     textAlign: 'center',
   },
   darkEmptyText: {
-    color: 'rgb(170, 170, 170)',
+    color: 'rgb(156, 163, 175)',
   },
 });
 

@@ -38,7 +38,8 @@ const NavigationBar: React.FC = () => {
                     style={[
                       stylesNavBar.icon,
                       focused && stylesNavBar.activeIcon,
-                      isDarkMode && stylesNavBar.darkActiveIcon,
+                      isDarkMode && stylesNavBar.darkIcon,
+                      isDarkMode && focused && stylesNavBar.darkActiveIcon,
                     ]}
                   />
                 ) : route.name === "Saved" ? (
@@ -47,7 +48,8 @@ const NavigationBar: React.FC = () => {
                     style={[
                       stylesNavBar.icon,
                       focused && stylesNavBar.activeIcon,
-                      isDarkMode && stylesNavBar.darkActiveIcon,
+                      isDarkMode && stylesNavBar.darkIcon,
+                      isDarkMode && focused && stylesNavBar.darkActiveIcon,
                     ]}
                   />
                 ) : (
@@ -56,7 +58,8 @@ const NavigationBar: React.FC = () => {
                     style={[
                       stylesNavBar.icon,
                       focused && stylesNavBar.activeIcon,
-                      isDarkMode && stylesNavBar.darkActiveIcon,
+                      isDarkMode && stylesNavBar.darkIcon,
+                      isDarkMode && focused && stylesNavBar.darkActiveIcon,
                     ]}
                   />
                 )}
@@ -74,7 +77,7 @@ const NavigationBar: React.FC = () => {
             </Pressable>
           );
         },
-        tabBarLabel: () => null, // Remove default label since we're handling it inside Pressable
+        tabBarLabel: () => null, 
         headerShown: false,
       })}
     >

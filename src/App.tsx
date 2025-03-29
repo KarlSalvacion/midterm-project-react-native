@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View, StatusBar } from "react-native";
+import { SafeAreaView, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "./context/ThemeContext";
 import { SavedJobsProvider } from "./context/SavedJobsContext";

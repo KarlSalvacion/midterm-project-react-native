@@ -17,7 +17,6 @@ interface SavedJobsProviderProps {
 export const SavedJobsProvider: React.FC<SavedJobsProviderProps> = ({ children }) => {
   const [savedJobs, setSavedJobs] = useState<Job[]>([]);
 
-  // Load saved jobs from AsyncStorage on initialization
   useEffect(() => {
     const loadSavedJobs = async () => {
       try {
@@ -33,7 +32,6 @@ export const SavedJobsProvider: React.FC<SavedJobsProviderProps> = ({ children }
     loadSavedJobs();
   }, []);
 
-  // Save jobs to AsyncStorage whenever the savedJobs state changes
   useEffect(() => {
     const saveJobsToStorage = async () => {
       try {

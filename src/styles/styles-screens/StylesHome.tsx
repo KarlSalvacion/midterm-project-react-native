@@ -79,7 +79,7 @@ const stylesHome = StyleSheet.create({
     },
 
     darkThemeToggleButton: {
-        backgroundColor: 'rgb(255, 215, 0)',
+        backgroundColor: 'rgb(250, 205, 80)',
     },
 
     
