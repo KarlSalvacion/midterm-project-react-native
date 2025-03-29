@@ -1,11 +1,16 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
-import stylesSavedJobs from '../styles-components/StyleSavedJobs';
+import stylesSavedJobs from '../styles/styles-screens/StylesSavedJobs';
 import { useSavedJobs } from '../context/SavedJobsContext';
 import JobItem from '../components/JobItems';
 import { Job } from '../types/JobTypes';
-import UnsaveModal from '../components/UnsaveModal';
+import UnsaveModal from '../modals/UnsaveModal';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/navigationTypes';
+import { useNavigation } from '@react-navigation/native';
+
 
 interface UnsaveMessage {
   jobId: string;
@@ -19,6 +24,7 @@ const SavedJobsScreen: React.FC = () => {
   const [unsaveMessage, setUnsaveMessage] = useState<UnsaveMessage | null>(null);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const flatListRef = useRef<FlatList>(null);
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleUnsave = (jobId: string, jobTitle: string, job: Job) => {
     removeJob(jobId);
@@ -51,8 +57,13 @@ const SavedJobsScreen: React.FC = () => {
           <Text 
             style={[stylesSavedJobs.title, isDarkMode && stylesSavedJobs.darkTitle]}
           >
-            Saved Jobs
+            Saved Jobs  
           </Text>
+
+          <Text style={[stylesSavedJobs.savedJobsAmountText, isDarkMode && stylesSavedJobs.darkSavedJobsAmountText]}>
+            ({savedJobs.length})
+          </Text>
+        
         </Pressable>
       </View>
         
@@ -74,6 +85,7 @@ const SavedJobsScreen: React.FC = () => {
             job={item} 
             isDarkMode={isDarkMode}
             onUnsave={() => handleUnsave(item.id, item.title, item)}
+            navigation={navigation}
           />
         )}
         contentContainerStyle={stylesSavedJobs.listContainer}
@@ -84,6 +96,13 @@ const SavedJobsScreen: React.FC = () => {
         keyboardShouldPersistTaps="handled"
         ListEmptyComponent={() => (
           <View style={stylesSavedJobs.emptyContainer}>
+            <Ionicons 
+              name="document-text-outline" 
+              size={48} 
+              color={isDarkMode ? "rgb(156, 163, 175)" : "rgb(75, 85, 99)"}
+              style={stylesSavedJobs.emptyIcon}
+            />
+
             <Text style={[stylesSavedJobs.emptyText, isDarkMode && stylesSavedJobs.darkEmptyText]}>
               No saved jobs yet
             </Text>

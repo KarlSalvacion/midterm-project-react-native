@@ -5,7 +5,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { SavedJobsProvider } from "./context/SavedJobsContext";
 import { AppliedJobsProvider } from "./context/AppliedJobsContext";
 import NavigationBar from './navigation/NavigationBar';
-import stylesGlobal from "./styles-components/StylesGlobal";
+import stylesGlobal from "./styles/styles-screens/StylesGlobal";
 import { useTheme } from "./context/ThemeContext";
 
 const AppContent: React.FC = () => {

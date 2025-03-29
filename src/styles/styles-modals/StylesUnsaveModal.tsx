@@ -3,10 +3,10 @@ import { StyleSheet } from "react-native";
 const stylesUnsaveModal = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor: 'rgba(1, 5, 18, 0.5)',
     width: '100%',  
+    marginBottom: 120,
   },
 
   darkCenteredView: {
@@ -15,23 +15,34 @@ const stylesUnsaveModal = StyleSheet.create({
 
   modalView: {
     width: '90%',
-    backgroundColor: 'rgb(242, 242, 242)',
+    backgroundColor: 'rgb(255, 255, 255)',
     borderRadius: 12,
+    borderLeftWidth: 10,
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    borderLeftColor: 'rgb(20, 71, 142)',
+    borderTopColor: 'rgb(225, 225, 225)',
+    borderRightColor: 'rgb(225, 225, 225)',
+    borderBottomColor: 'rgb(225, 225, 225)',
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     shadowColor: 'rgb(0, 0, 0)',
     shadowOffset: {
-      width: 0,
-      height: 2,
+      width: 2,
+      height: 5,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 4,
+    shadowRadius: 3.84,
     elevation: 5,
   },
   darkModalView: {
     backgroundColor: 'rgb(45, 45, 45)',
+    borderTopColor: 'rgb(64, 64, 64)',
+    borderRightColor: 'rgb(64, 64, 64)',  
+    borderBottomColor: 'rgb(64, 64, 64)',
   },
   messageContent: {
     flex: 1,

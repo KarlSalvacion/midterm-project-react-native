@@ -12,7 +12,7 @@ const stylesHome = StyleSheet.create({
     },
 
     darkMainContent: {
-        backgroundColor: 'rgb(26, 26, 26)',
+        backgroundColor: 'rgb(17, 17, 17)',
     },
 
     headerContainer: {
@@ -23,10 +23,13 @@ const stylesHome = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 3,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgb(221, 221, 221)',
     },
     
     darkHeaderContainer: {
         backgroundColor: 'rgb(26, 26, 26)',
+        borderBottomColor: 'rgb(41, 41, 41)',
     },
 
     topContainer: {

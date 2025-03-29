@@ -3,14 +3,19 @@ import { StyleSheet } from 'react-native';
 const stylesAppliedJobs = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(245, 245, 245)',
+    backgroundColor: 'rgb(250, 250, 250)',
   },
   darkContainer: {
     backgroundColor: 'rgb(18, 18, 18)',
   },
   headerContainer: {
+    height: 70,
+    width: '100%',
     padding: 20,
-    backgroundColor: 'rgb(255, 255, 255)',
+    backgroundColor: 'rgb(20, 71, 142)',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
     elevation: 2,
@@ -26,18 +31,32 @@ const stylesAppliedJobs = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '600',
-    color: 'rgb(51, 51, 51)',
+    color: 'rgb(255, 255, 255)',
     marginBottom: 4,
   },
   darkTitle: {
     color: 'rgb(255, 255, 255)',
   },
+
+  appliedJobsAmountText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'rgb(255, 255, 255)',
+    marginLeft: 5,
+    textAlign: 'center',
+  },
+
+  darkAppliedJobsAmountText: {
+    color: 'rgb(255, 255, 255)',
+  },
+
   subtitle: {
-    fontSize: 14,
-    color: 'rgb(102, 102, 102)',
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'rgb(255, 255, 255)',
   },
   darkSubText: {
-    color: 'rgb(170, 170, 170)',
+    color: 'rgb(231, 231, 231)',
   },
   listContainer: {
     padding: 16,
@@ -110,20 +129,38 @@ const stylesAppliedJobs = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 16,
   },
+
+  darkStatusContainer: {
+    backgroundColor: 'rgb(224, 209, 196)',
+  },
+  
   statusText: {
     color: 'rgb(234, 88, 12)',
     fontSize: 12,
     fontWeight: '600',
   },
+
+  darkStatusText: {
+    color: 'rgb(220, 18, 0)',
+  },
+  
   cancelButton: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgb(237, 52, 52)',
   },
+  darkCancelButton: {
+    borderColor: 'rgb(220, 18, 0)',
+  },
+
   buttonPressed: {
     opacity: 0.7,
+    backgroundColor: 'rgba(255, 12, 28, 0.08)',
   },
+
   cancelButtonText: {
     color: 'rgb(220, 38, 38)',
     marginLeft: 4,
@@ -134,10 +171,11 @@ const stylesAppliedJobs = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 60,
+    alignSelf: 'center',
+    padding: 24,
   },
   emptyIcon: {
-    marginBottom: 16,
+    marginBottom: 10,
   },
   emptyText: {
     fontSize: 16,

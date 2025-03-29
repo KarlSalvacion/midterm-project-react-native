@@ -4,7 +4,7 @@ import {
   Text, 
   FlatList, 
   ActivityIndicator, 
-  RefreshControl, 
+  // RefreshControl, 
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -13,15 +13,22 @@ import {
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { fetchJobs } from "../services/ApiServices";
 import { Job } from "../types/JobTypes";
-import stylesHome from "../styles-components/StyleHome";
+import stylesHome from "../styles/styles-screens/StylesHome";
 import JobItem from "../components/JobItems";
 import { useTheme } from "../context/ThemeContext";
+import { useSavedJobs } from "../context/SavedJobsContext";
+import { useAppliedJobs } from "../context/AppliedJobsContext";
 import SearchItems from '../components/SearchItems';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/navigationTypes';
+import { useNavigation } from '@react-navigation/native';
 
 const ITEMS_PER_PAGE = 10;
 
 const HomeScreen: React.FC = () => {
   const { isDarkMode, toggleTheme } = useTheme();
+  const { savedJobs } = useSavedJobs();
+  const { appliedJobs, hasApplied } = useAppliedJobs();
   const flatListRef = useRef<FlatList>(null);
   const slideAnim = useRef(new Animated.Value(0)).current;
   const [isPressed, setIsPressed] = useState(false);
@@ -29,11 +36,12 @@ const HomeScreen: React.FC = () => {
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [displayedJobs, setDisplayedJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [refreshing, setRefreshing] = useState<boolean>(false);
+  // const [refreshing, setRefreshing] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
-
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  
   const scrollToTop = () => {
     flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
   };
@@ -44,9 +52,8 @@ const HomeScreen: React.FC = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-    setHasMore(true);
-    const initialJobs = filteredJobs.slice(0, ITEMS_PER_PAGE);
-    setDisplayedJobs(initialJobs);
+    setHasMore(filteredJobs.length > ITEMS_PER_PAGE);
+    setDisplayedJobs(filteredJobs.slice(0, ITEMS_PER_PAGE));
   }, [filteredJobs]);
 
   useEffect(() => {
@@ -58,31 +65,63 @@ const HomeScreen: React.FC = () => {
     }).start();
   }, [isDarkMode]);
 
-  const loadJobs = async (): Promise<void> => {
+  const loadJobs = useCallback(async (): Promise<void> => {
     try {
+      setLoading(true);
       const jobData = await fetchJobs();
-      setJobs(jobData);
-      setFilteredJobs(jobData);
-      setDisplayedJobs(jobData.slice(0, ITEMS_PER_PAGE));
+      
+      const jobMap = new Map<string, Job>();
+      jobData.forEach((job) => {
+        jobMap.set(job.id, job);
+      });
+
+      savedJobs.forEach((savedJob) => {
+        if (jobMap.has(savedJob.id)) {
+          const existingJob = jobMap.get(savedJob.id)!;
+          jobMap.set(savedJob.id, {
+            ...existingJob,
+            saved: true
+          });
+        } else {
+          jobMap.set(savedJob.id, savedJob);
+        }
+      });
+
+      appliedJobs.forEach((appliedJob) => {
+        if (!jobMap.has(appliedJob.job.id)) {
+          jobMap.set(appliedJob.job.id, appliedJob.job);
+        }
+      });
+
+      const mergedJobs = Array.from(jobMap.values());
+    
+      const filtered = searchText.trim() 
+        ? mergedJobs.filter(job => 
+            [job.title, job.company.name, job.jobType, job.workModel]
+              .some(field => field.toLowerCase().includes(searchText.trim().toLowerCase()))
+          )
+        : mergedJobs;
+      
+      setJobs(mergedJobs);
+      setFilteredJobs(filtered);
+      setDisplayedJobs(filtered.slice(0, ITEMS_PER_PAGE));
+
     } catch (error) {
       console.error('Error loading jobs:', error);
     } finally {
       setLoading(false);
-      setRefreshing(false);
+      // setRefreshing(false);
     }
-  };
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    loadJobs();
-  }, []);
+  }, [searchText, savedJobs, appliedJobs]);
 
   const handleSearch = (text: string) => {
+    const query = text.trim().toLowerCase();
     setSearchText(text);
-    const filtered = text.trim()
+
+    const filtered = query
       ? jobs.filter(job => 
-        job.title.toLowerCase().includes(text.toLowerCase()) ||
-        job.company.name.toLowerCase().includes(text.toLowerCase())
+        [job.title, job.company.name, job.jobType, job.workModel]
+          .some(field => field.toLowerCase().includes(query))
       )
       : jobs;
     setFilteredJobs(filtered);
@@ -176,22 +215,28 @@ const HomeScreen: React.FC = () => {
           />
         </View>
         
-        {loading && !refreshing ? (
+        {loading ? (
           <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />
         ) : (
           <FlatList 
             ref={flatListRef}
             data={displayedJobs}
             keyExtractor={(item) => item.id} 
-            refreshControl={
-              <RefreshControl 
-                refreshing={refreshing} 
-                onRefresh={onRefresh}
-                colors={[isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"]}
-                tintColor={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"}
+            // refreshControl={
+            //   <RefreshControl 
+            //     refreshing={refreshing} 
+            //     onRefresh={onRefresh}
+            //     colors={[isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"]}
+            //     tintColor={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"}
+            //   />
+            // } 
+            renderItem={({ item }) => (
+              <JobItem 
+                job={item} 
+                isDarkMode={isDarkMode} 
+                navigation={navigation}
               />
-            } 
-            renderItem={({ item }) => <JobItem job={item} isDarkMode={isDarkMode} />}
+            )}
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={stylesHome.flatListContainer}
             onEndReached={loadMoreJobs}

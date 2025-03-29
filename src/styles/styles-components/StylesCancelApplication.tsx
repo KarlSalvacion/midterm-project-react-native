@@ -8,9 +8,10 @@ const stylesCancelApplication = StyleSheet.create({
       backgroundColor: 'rgba(1, 5, 18, 0.5)',
       width: '100%',
     },
+    
     modalView: {
       margin: 20,
-      backgroundColor: 'white',
+      backgroundColor: 'rgb(255, 255, 255)',
       borderRadius: 16,
       padding: 24,
       alignItems: 'center',
