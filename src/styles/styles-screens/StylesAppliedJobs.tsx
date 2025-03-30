@@ -30,7 +30,7 @@ const stylesAppliedJobs = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: 'bold',
     color: 'rgb(255, 255, 255)',
     marginBottom: 4,
   },

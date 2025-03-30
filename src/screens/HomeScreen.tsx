@@ -22,6 +22,7 @@ import SearchItems from '../components/SearchItems';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/navigationTypes';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -42,6 +43,15 @@ const HomeScreen: React.FC = () => {
   const [searchText, setSearchText] = useState<string>("");
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   
+  const [fontsLoaded] = useFonts({
+    'Kodchasan-Regular': require('../assets/Fonts/Kodchasan-Regular.ttf'),
+    'Kodchasan-Bold': require('../assets/Fonts/Kodchasan-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />;
+  }
+
   const scrollToTop = () => {
     flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
   };
