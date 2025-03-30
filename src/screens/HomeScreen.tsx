@@ -74,9 +74,10 @@ const HomeScreen: React.FC = () => {
           jobMap.set(appliedJob.job.id, appliedJob.job);
         }
       });
-
+      
       const mergedJobs = Array.from(jobMap.values());
-    
+      setJobs(mergedJobs);
+      
       const filtered = searchText.trim() 
         ? mergedJobs.filter(job => 
             [job.title, job.company.name, job.jobType, job.workModel]
@@ -84,7 +85,6 @@ const HomeScreen: React.FC = () => {
           )
         : mergedJobs;
       
-      setJobs(mergedJobs);
       setFilteredJobs(filtered);
       setDisplayedJobs(filtered.slice(0, ITEMS_PER_PAGE));
 
@@ -93,11 +93,23 @@ const HomeScreen: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [searchText, savedJobs, appliedJobs]);
+  }, []);
 
   useEffect(() => {
     loadJobs();
-  }, [loadJobs]);
+  }, []);
+
+  useEffect(() => {
+    const filtered = searchText.trim() 
+      ? jobs.filter(job => 
+          [job.title, job.company.name, job.jobType, job.workModel]
+            .some(field => field.toLowerCase().includes(searchText.trim().toLowerCase()))
+        )
+      : jobs;
+    
+    setFilteredJobs(filtered);
+    setDisplayedJobs(filtered.slice(0, ITEMS_PER_PAGE));
+  }, [searchText, jobs]);
 
   useEffect(() => {
     setCurrentPage(1);
