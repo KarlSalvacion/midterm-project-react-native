@@ -127,6 +127,19 @@ const HomeScreen: React.FC = () => {
     }).start();
   }, [isDarkMode]);
 
+  const handleSearch = (text: string) => {
+    const query = text.trim().toLowerCase();
+    setSearchText(text);
+
+    const filtered = query
+      ? jobs.filter(job => 
+        [job.title, job.company.name, job.jobType, job.workModel]
+          .some(field => field.toLowerCase().includes(query))
+      )
+      : jobs;
+    setFilteredJobs(filtered);
+  };
+
   const debouncedSearch = useCallback(
     debounce((text: string) => {
       handleSearch(text);
@@ -146,19 +159,6 @@ const HomeScreen: React.FC = () => {
 
   const scrollToTop = () => {
     flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-  };
-
-  const handleSearch = (text: string) => {
-    const query = text.trim().toLowerCase();
-    setSearchText(text);
-
-    const filtered = query
-      ? jobs.filter(job => 
-        [job.title, job.company.name, job.jobType, job.workModel]
-          .some(field => field.toLowerCase().includes(query))
-      )
-      : jobs;
-    setFilteredJobs(filtered);
   };
 
   const loadMoreJobs = () => {
