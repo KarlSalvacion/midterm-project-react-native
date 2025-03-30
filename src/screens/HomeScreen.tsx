@@ -127,6 +127,19 @@ const HomeScreen: React.FC = () => {
     }).start();
   }, [isDarkMode]);
 
+  const debouncedSearch = useCallback(
+    debounce((text: string) => {
+      handleSearch(text);
+    }, 300),
+    []
+  );
+
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [debouncedSearch]);
+
   if (!fontsLoaded) {
     return <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />;
   }
@@ -175,13 +188,6 @@ const HomeScreen: React.FC = () => {
     toggleTheme();
     setTimeout(() => setIsPressed(false), 200);
   };
-
-  const debouncedSearch = useCallback(
-    debounce((text: string) => {
-      handleSearch(text);
-    }, 300),
-    []
-  );
 
   return (
     <KeyboardAvoidingView 
@@ -238,7 +244,7 @@ const HomeScreen: React.FC = () => {
           
           <SearchItems 
             isDarkMode={isDarkMode}
-            onSearch={handleSearch}
+            onSearch={debouncedSearch}
             searchText={searchText}
           />
         </View>
