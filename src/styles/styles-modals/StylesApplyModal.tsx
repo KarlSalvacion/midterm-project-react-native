@@ -16,6 +16,10 @@ const stylesApplyModal = StyleSheet.create({
     width: '100%',
   },
 
+  darkBlurContainer:{
+    backgroundColor: 'rgba(5, 7, 10, 0.5)',
+  },
+
   modalView: {
     width: '100%',
     height: '85%',
