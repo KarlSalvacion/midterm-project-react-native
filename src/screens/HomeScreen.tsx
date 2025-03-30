@@ -47,33 +47,6 @@ const HomeScreen: React.FC = () => {
     'Comfortaa-Bold': require('../assets/Fonts/Comfortaa/Comfortaa-Bold.ttf'),
   });
 
-  useEffect(() => {
-    loadJobs();
-  }, []);
-
-  useEffect(() => {
-    setCurrentPage(1);
-    setHasMore(filteredJobs.length > ITEMS_PER_PAGE);
-    setDisplayedJobs(filteredJobs.slice(0, ITEMS_PER_PAGE));
-  }, [filteredJobs]);
-
-  useEffect(() => {
-    Animated.spring(slideAnim, {
-      toValue: isDarkMode ? 1 : 0,
-      useNativeDriver: true,
-      tension: 50,
-      friction: 7,
-    }).start();
-  }, [isDarkMode]);
-
-  if (!fontsLoaded) {
-    return <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />;
-  }
-
-  const scrollToTop = () => {
-    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-  };
-
   const loadJobs = useCallback(async (): Promise<void> => {
     try {
       setLoading(true);
@@ -121,6 +94,33 @@ const HomeScreen: React.FC = () => {
       setLoading(false);
     }
   }, [searchText, savedJobs, appliedJobs]);
+
+  useEffect(() => {
+    loadJobs();
+  }, [loadJobs]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setHasMore(filteredJobs.length > ITEMS_PER_PAGE);
+    setDisplayedJobs(filteredJobs.slice(0, ITEMS_PER_PAGE));
+  }, [filteredJobs]);
+
+  useEffect(() => {
+    Animated.spring(slideAnim, {
+      toValue: isDarkMode ? 1 : 0,
+      useNativeDriver: true,
+      tension: 50,
+      friction: 7,
+    }).start();
+  }, [isDarkMode]);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />;
+  }
+
+  const scrollToTop = () => {
+    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+  };
 
   const handleSearch = (text: string) => {
     const query = text.trim().toLowerCase();
