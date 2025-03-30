@@ -22,6 +22,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/navigationTypes';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { debounce } from 'lodash';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -174,6 +175,13 @@ const HomeScreen: React.FC = () => {
     toggleTheme();
     setTimeout(() => setIsPressed(false), 200);
   };
+
+  const debouncedSearch = useCallback(
+    debounce((text: string) => {
+      handleSearch(text);
+    }, 300),
+    []
+  );
 
   return (
     <KeyboardAvoidingView 
