@@ -74,7 +74,7 @@ const HomeScreen: React.FC = () => {
           jobMap.set(appliedJob.job.id, appliedJob.job);
         }
       });
-
+      
       const mergedJobs = Array.from(jobMap.values());
       setJobs(mergedJobs);
       
