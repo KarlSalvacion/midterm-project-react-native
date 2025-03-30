@@ -222,7 +222,9 @@ const ApplyModal: React.FC<ApplyModalProps> = ({
               style={stylesApplyModal.blurContainer}
             >
               <Pressable 
-                style={stylesApplyModal.blurContainer} 
+                style={[stylesApplyModal.blurContainer,
+                  isDarkMode && stylesApplyModal.darkBlurContainer]
+                } 
                 onPress={closeModalWithAnimation}
               >
                 <Animated.View 
