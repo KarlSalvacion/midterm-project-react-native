@@ -40,9 +40,10 @@ const stylesHome = StyleSheet.create({
     },
 
     title: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: "bold",
         color: 'rgb(255, 255, 255)',
+        fontFamily: 'Kodchasan-Bold',
     },
 
     darkTitle: {
