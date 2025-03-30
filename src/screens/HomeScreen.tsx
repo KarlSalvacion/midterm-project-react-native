@@ -4,7 +4,6 @@ import {
   Text, 
   FlatList, 
   ActivityIndicator, 
-  // RefreshControl, 
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -37,24 +36,16 @@ const HomeScreen: React.FC = () => {
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [displayedJobs, setDisplayedJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  // const [refreshing, setRefreshing] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   
   const [fontsLoaded] = useFonts({
-    'Kodchasan-Regular': require('../assets/Fonts/Kodchasan-Regular.ttf'),
-    'Kodchasan-Bold': require('../assets/Fonts/Kodchasan-Bold.ttf'),
+    'Kodchasan-Regular': require('../assets/Fonts/Kodchasan/Kodchasan-Regular.ttf'),
+    'Kodchasan-Bold': require('../assets/Fonts/Kodchasan/Kodchasan-Bold.ttf'),
+    'Comfortaa-Bold': require('../assets/Fonts/Comfortaa/Comfortaa-Bold.ttf'),
   });
-
-  if (!fontsLoaded) {
-    return <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />;
-  }
-
-  const scrollToTop = () => {
-    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-  };
 
   useEffect(() => {
     loadJobs();
@@ -74,6 +65,14 @@ const HomeScreen: React.FC = () => {
       friction: 7,
     }).start();
   }, [isDarkMode]);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" color={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"} />;
+  }
+
+  const scrollToTop = () => {
+    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+  };
 
   const loadJobs = useCallback(async (): Promise<void> => {
     try {
@@ -120,7 +119,6 @@ const HomeScreen: React.FC = () => {
       console.error('Error loading jobs:', error);
     } finally {
       setLoading(false);
-      // setRefreshing(false);
     }
   }, [searchText, savedJobs, appliedJobs]);
 
@@ -232,14 +230,6 @@ const HomeScreen: React.FC = () => {
             ref={flatListRef}
             data={displayedJobs}
             keyExtractor={(item) => item.id} 
-            // refreshControl={
-            //   <RefreshControl 
-            //     refreshing={refreshing} 
-            //     onRefresh={onRefresh}
-            //     colors={[isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"]}
-            //     tintColor={isDarkMode ? "rgb(255, 215, 0)" : "rgb(0, 123, 255)"}
-            //   />
-            // } 
             renderItem={({ item }) => (
               <JobItem 
                 job={item} 
