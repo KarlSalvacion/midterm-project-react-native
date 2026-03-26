@@ -279,7 +279,7 @@ const HomeScreen: React.FC = () => {
                 isDarkMode && stylesHome.darkEmptyContainer
               ]}>
                 <AntDesign 
-                  name="frowno" 
+                  name="frown" 
                   style={[
                     stylesHome.emptyIcon,
                     isDarkMode && stylesHome.darkEmptyIcon
